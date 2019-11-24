@@ -1,0 +1,1 @@
+Playing with computer vision, testing concepts in software engineering and C++
