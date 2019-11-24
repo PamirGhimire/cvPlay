@@ -1,21 +1,37 @@
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/bin)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/bin/apps/)
 set(CMAKE_CXX_STANDARD 11)
-
-file(GLOB SOURCE_FILES ${PROJECT_SOURCE_DIR}/apps/*.cpp)
-
-file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/apps/*.h)
 
 include_directories(
 	${PROJECT_SOURCE_DIR}/apps/
+	${PROJECT_SOURCE_DIR}/common/
 )
 
-add_executable(testapp 
-	${SOURCE_FILES} 
-	${HEADER_FILES}
+#-----------viewWebcam--app-------------------
+file(GLOB SOURCE_FILES_VIEW_WEBCAM 
+	${PROJECT_SOURCE_DIR}/apps/viewWebcam.cpp
+	${PROJECT_SOURCE_DIR}/common/*.cpp
 )
 
-target_link_libraries (testapp 
-	Eigen3::Eigen 
+add_executable(viewWebcam 
+	${SOURCE_FILES_VIEW_WEBCAM} 
+)
+
+target_link_libraries (viewWebcam 
 	${OpenCV_LIBS}
 )
+#-----------viewWebcam--app-------------------
 
+
+#-----------viewORBInWebcam--app-------------------
+file(GLOB SOURCE_FILES_VIEW_ORB_IN_WEBCAM 
+	${PROJECT_SOURCE_DIR}/apps/viewORBInWebcam.cpp
+	${PROJECT_SOURCE_DIR}/common/*.cpp
+)
+
+add_executable(viewORBInWebcam 
+	${SOURCE_FILES_VIEW_ORB_IN_WEBCAM} 
+)
+target_link_libraries (viewORBInWebcam 
+	${OpenCV_LIBS}
+)
+#-----------viewORBInWebcam--app-------------------
