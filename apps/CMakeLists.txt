@@ -35,3 +35,17 @@ target_link_libraries (viewORBInWebcam
 	${OpenCV_LIBS}
 )
 #-----------viewORBInWebcam--app-------------------
+
+#-----------monocularStreamFeatureMatching--app-------------------
+file(GLOB SOURCE_FILES_MONOCULAR_FEATURE_MATCHING 
+	${PROJECT_SOURCE_DIR}/apps/monocularStreamFeatureMatching.cpp
+	${PROJECT_SOURCE_DIR}/common/*.cpp
+)
+
+add_executable(monocularStreamFeatureMatching 
+	${SOURCE_FILES_MONOCULAR_FEATURE_MATCHING} 
+)
+target_link_libraries (monocularStreamFeatureMatching 
+	${OpenCV_LIBS}
+)
+#-----------viewORBInWebcam--app-------------------
