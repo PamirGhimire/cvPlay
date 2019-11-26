@@ -1,5 +1,6 @@
 #pragma once
 #include <FeatureExtractor.h>
+#include <optional>
 
 namespace vo
 {
@@ -17,7 +18,7 @@ public:
 
 private:
     FeatureExtractor feature_extractor_;
-    cv::Ptr<cv::DescriptorMatcher> feature_matcher_;
+    cv::FlannBasedMatcher feature_matcher_;
 };
 
 }//namespace visual_features ends
