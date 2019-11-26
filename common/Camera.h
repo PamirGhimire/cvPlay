@@ -1,22 +1,19 @@
 #pragma once
 #include <iCamera.h>
 
-namespace vo
-{
-namespace common
-{
+namespace vo {
+namespace common {
 
-constexpr int kVideoCaptureCamera= 0; //built-in webcam
+constexpr int kVideoCaptureCamera = 0; // built-in webcam
 
-class Camera : public iCamera
-{
+class Camera : public iCamera {
 public:
-    Camera();
-    cv::Mat Capture() override;
+  Camera();
+  cv::Mat Capture() override;
 
 private:
-    cv::VideoCapture webcam_;
+  cv::VideoCapture webcam_;
 };
 
-} //namespace camera ends
-} //namespace vo ends
+} // namespace common
+} // namespace vo
