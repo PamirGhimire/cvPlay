@@ -1,38 +1,48 @@
-#include "Camera.h"
 #include "FeatureMatcher.h"
+#include "TimelapseCamera.h"
+
+void ShowMatchesBetweenTimeSeparatedFrames(
+    const vo::common::TimeSeparatedFrames &time_separated_frames) {
+  using namespace vo::common;
+  cv::Mat image_left = time_separated_frames.current_frame_;
+  cv::Mat image_right = time_separated_frames.delayed_frame_;
+
+  visual_features::FeatureMatcher feature_matcher;
+  const auto feature_matches_left_right =
+      feature_matcher.MatchKeypointsInImages(image_left, image_right);
+
+  cv::Mat image_showing_matches;
+
+  if (!feature_matches_left_right.empty()) {
+    visual_features::FeatureExtractor feature_extractor;
+    const auto orb_keypoints_image_left =
+        feature_extractor.GetORBKeypointsInImage(image_left);
+    const auto orb_keypoints_image_right =
+        feature_extractor.GetORBKeypointsInImage(image_right);
+
+    cv::drawMatches(image_left, orb_keypoints_image_left, image_right,
+                    orb_keypoints_image_right, feature_matches_left_right,
+                    image_showing_matches);
+  }
+
+  const auto window_name{"feature matching between time-separated frames"};
+  if (!image_showing_matches.empty())
+    cv::imshow(window_name, image_showing_matches);
+}
 
 void DrawFeatureMatchesOnMonocularStream() {
   using namespace vo::common;
-  Camera testcam;
-  visual_features::FeatureMatcher feature_matcher;
-  visual_features::FeatureExtractor feature_extractor;
+  const auto number_of_frames_to_skip_between_matched_frames = 5;
+  TimelapseCamera timelapse_camera(
+      number_of_frames_to_skip_between_matched_frames);
 
   while (true) {
-    // cv::Mat test_image_a = cv::imread("shristi.jpg");
-    // cv::Mat test_image_b = cv::imread("shristi.jpg");
+    timelapse_camera.Update();
+    const auto time_separated_frames =
+        timelapse_camera.GetTimeSeparatedFrames();
 
-    cv::Mat test_image_a = testcam.Capture();
-    cv::Mat test_image_b = testcam.Capture();
-
-    const auto feature_matches_a_b =
-        feature_matcher.MatchKeypointsInImages(test_image_a, test_image_b);
-
-    cv::Mat image_showing_matches;
-
-    if (!feature_matches_a_b.empty()) {
-      const auto orb_keypoints_image_a =
-          feature_extractor.GetORBKeypointsInImage(test_image_a);
-      const auto orb_keypoints_image_b =
-          feature_extractor.GetORBKeypointsInImage(test_image_b);
-
-      cv::drawMatches(test_image_a, orb_keypoints_image_a, test_image_b,
-                      orb_keypoints_image_b, feature_matches_a_b,
-                      image_showing_matches);
-    }
-
-    const auto window_name{"matches"};
-    if (!image_showing_matches.empty())
-      cv::imshow(window_name, image_showing_matches);
+    if (time_separated_frames.IsValid())
+      ShowMatchesBetweenTimeSeparatedFrames(time_separated_frames);
 
     const auto escape_key = 27;
     const auto key_press = cv::waitKey(10);

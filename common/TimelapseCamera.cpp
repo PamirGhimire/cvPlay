@@ -5,7 +5,6 @@ namespace common {
 
 TimelapseCamera::TimelapseCamera(
     uint number_of_frames_to_skip_between_separated_frames) {
-  Camera::Camera();
   number_of_frames_to_skip_between_separated_frames_ =
       number_of_frames_to_skip_between_separated_frames;
 }
@@ -13,12 +12,12 @@ TimelapseCamera::TimelapseCamera(
 bool TimelapseCamera::IsCameraReady() const {
   const auto camera_is_ready =
       frames_buffer_.size() ==
-      number_of_frames_to_skip_between_consecutive_frames_ + 2;
+      number_of_frames_to_skip_between_separated_frames_ + 2;
   return camera_is_ready;
 }
 
 TimeSeparatedFrames TimelapseCamera::GetTimeSeparatedFrames() {
-  if (IsCameraActive()) {
+  if (IsCameraReady()) {
     return {frames_buffer_[0], frames_buffer_.back(), true};
   }
   return TimeSeparatedFrames{cv::Mat{}, cv::Mat{}, false};
