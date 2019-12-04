@@ -49,4 +49,22 @@ add_executable(monocularStreamFeatureMatching
 target_link_libraries (monocularStreamFeatureMatching 
 	${OpenCV_LIBS}
 )
-#-----------viewORBInWebcam--app-------------------
+#-----------monocularStreamFeatureMatching--app-------------------
+
+#-----------monocularStreamFeatureMatching--app-------------------
+file(GLOB SOURCE_FILES_MONOCULAR_FEATURE_MATCHING_MULTITHREADED 
+	${PROJECT_SOURCE_DIR}/apps/monocularStreamFeatureMatching_multiThreaded.cpp
+	${PROJECT_SOURCE_DIR}/common/*.cpp
+)
+
+add_executable(monocularStreamFeatureMatching_multiThreaded 
+	${SOURCE_FILES_MONOCULAR_FEATURE_MATCHING_MULTITHREADED} 
+)
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries (monocularStreamFeatureMatching_multiThreaded 
+	${OpenCV_LIBS}
+	Threads::Threads
+)
+#-----------monocularStreamFeatureMatching--app-------------------

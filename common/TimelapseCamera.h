@@ -14,6 +14,8 @@ struct TimeSeparatedFrames {
       : current_frame_{current_frame}, delayed_frame_(delayed_frame),
         is_valid_(is_valid) {}
 
+  TimeSeparatedFrames() = default;
+
   bool IsValid() const {
     if (is_valid_) {
       return true;
