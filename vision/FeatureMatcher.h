@@ -2,8 +2,8 @@
 #include <FeatureExtractor.h>
 #include <optional>
 
-namespace vo {
-namespace common {
+namespace cvp {
+namespace vision {
 namespace visual_features {
 
 class FeatureMatcher {
@@ -18,5 +18,5 @@ private:
 };
 
 } // namespace visual_features
-} // namespace common
-} // namespace vo
+} // namespace vision
+} // namespace cvp

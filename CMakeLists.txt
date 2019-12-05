@@ -32,4 +32,3 @@ ${EIGEN3_INCLUDE_DIR}
 )
 
 add_subdirectory(apps)
-add_subdirectory(common)

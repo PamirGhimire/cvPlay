@@ -1,8 +1,8 @@
 #pragma once
 #include "opencv2/features2d.hpp"
 
-namespace vo {
-namespace common {
+namespace cvp {
+namespace vision {
 namespace visual_features {
 
 enum class VisualFeatures { FAST, ORB };
@@ -28,5 +28,5 @@ private:
 };
 
 } // namespace visual_features
-} // namespace common
-} // namespace vo
+} // namespace vision
+} // namespace cvp

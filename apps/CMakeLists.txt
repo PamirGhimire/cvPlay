@@ -3,14 +3,13 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(
-	${PROJECT_SOURCE_DIR}/apps/
-	${PROJECT_SOURCE_DIR}/common/
+	${PROJECT_SOURCE_DIR}/vision/
 )
 
 #-----------viewWebcam--app-------------------
 file(GLOB SOURCE_FILES_VIEW_WEBCAM 
 	${PROJECT_SOURCE_DIR}/apps/viewWebcam.cpp
-	${PROJECT_SOURCE_DIR}/common/*.cpp
+	${PROJECT_SOURCE_DIR}/vision/*.cpp
 )
 
 add_executable(viewWebcam 
@@ -26,7 +25,7 @@ target_link_libraries (viewWebcam
 #-----------viewORBInWebcam--app-------------------
 file(GLOB SOURCE_FILES_VIEW_ORB_IN_WEBCAM 
 	${PROJECT_SOURCE_DIR}/apps/viewORBInWebcam.cpp
-	${PROJECT_SOURCE_DIR}/common/*.cpp
+	${PROJECT_SOURCE_DIR}/vision/*.cpp
 )
 
 add_executable(viewORBInWebcam 
@@ -40,7 +39,7 @@ target_link_libraries (viewORBInWebcam
 #-----------monocularStreamFeatureMatching--app-------------------
 file(GLOB SOURCE_FILES_MONOCULAR_FEATURE_MATCHING 
 	${PROJECT_SOURCE_DIR}/apps/monocularStreamFeatureMatching.cpp
-	${PROJECT_SOURCE_DIR}/common/*.cpp
+	${PROJECT_SOURCE_DIR}/vision/*.cpp
 )
 
 add_executable(monocularStreamFeatureMatching 
@@ -54,7 +53,7 @@ target_link_libraries (monocularStreamFeatureMatching
 #-----------monocularStreamFeatureMatching--app-------------------
 file(GLOB SOURCE_FILES_MONOCULAR_FEATURE_MATCHING_MULTITHREADED 
 	${PROJECT_SOURCE_DIR}/apps/monocularStreamFeatureMatching_multiThreaded.cpp
-	${PROJECT_SOURCE_DIR}/common/*.cpp
+	${PROJECT_SOURCE_DIR}/vision/*.cpp
 )
 
 add_executable(monocularStreamFeatureMatching_multiThreaded 

@@ -2,15 +2,15 @@
 
 #include "opencv2/opencv.hpp"
 
-namespace vo {
-namespace common {
+namespace cvp {
+namespace vision {
 
 class iCamera {
 public:
   iCamera() = default;
   virtual cv::Mat Capture() = 0;
-  // virtual void Calibrate() = 0;
+  //todo :  virtual void Calibrate() = 0;
 };
 
-} // namespace common
-} // namespace vo
+} // namespace vision
+} // namespace cvp

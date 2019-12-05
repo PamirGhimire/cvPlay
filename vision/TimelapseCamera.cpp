@@ -1,7 +1,7 @@
 #include <TimelapseCamera.h>
 
-namespace vo {
-namespace common {
+namespace cvp {
+namespace vision {
 
 TimelapseCamera::TimelapseCamera(
     uint number_of_frames_to_skip_between_separated_frames) {
@@ -36,5 +36,5 @@ void TimelapseCamera::Update() {
   ++number_of_frames_skipped_;
 }
 
-} // namespace common
-} // namespace vo
+} // namespace vision
+} // namespace cvp
