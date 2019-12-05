@@ -2,8 +2,8 @@
 #include "TimelapseCamera.h"
 
 void ShowMatchesBetweenTimeSeparatedFrames(
-    const vo::common::TimeSeparatedFrames &time_separated_frames) {
-  using namespace vo::common;
+    const cvp::vision::TimeSeparatedFrames &time_separated_frames) {
+  using namespace cvp::vision;
   cv::Mat image_left = time_separated_frames.current_frame_;
   cv::Mat image_right = time_separated_frames.delayed_frame_;
 
@@ -31,7 +31,7 @@ void ShowMatchesBetweenTimeSeparatedFrames(
 }
 
 void DrawFeatureMatchesOnMonocularStream() {
-  using namespace vo::common;
+  using namespace cvp::vision;
   const auto number_of_frames_to_skip_between_matched_frames = 5;
   TimelapseCamera timelapse_camera(
       number_of_frames_to_skip_between_matched_frames);

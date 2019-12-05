@@ -1,7 +1,7 @@
 #include <Camera.h>
 
-namespace vo {
-namespace common {
+namespace cvp {
+namespace vision {
 
 Camera::Camera() { webcam_.open(kVideoCaptureCamera); }
 
@@ -12,5 +12,5 @@ cv::Mat Camera::Capture() {
   return new_frame;
 }
 
-} // namespace common
-} // namespace vo
+} // namespace vision
+} // namespace cvp

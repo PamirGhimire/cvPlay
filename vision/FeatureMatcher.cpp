@@ -1,16 +1,13 @@
 #include <FeatureMatcher.h>
 #include <iostream>
 
-namespace vo {
-namespace common {
+namespace cvp {
+namespace vision {
 namespace visual_features {
 
 FeatureMatcher::FeatureMatcher() {
-  // feature_matcher_ =
-  // cv::DescriptorMatcher::create(cv::DescriptorMatcher::FLANNBASED);
   // Initialization of flann for matching ORB :
   // https://stackoverflow.com/questions/43830849/opencv-use-flann-with-orb-descriptors-to-match-features
-
   feature_matcher_ =
       cv::FlannBasedMatcher(cv::makePtr<cv::flann::LshIndexParams>(12, 20, 2));
 }
@@ -55,5 +52,5 @@ FeatureMatcher::MatchKeypointsInImages(const cv::Mat &input_image_a,
 }
 
 } // namespace visual_features
-} // namespace common
-} // namespace vo
+} // namespace vision
+} // namespace cvp

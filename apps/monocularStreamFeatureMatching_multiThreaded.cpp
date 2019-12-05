@@ -3,13 +3,13 @@
 #include <thread>
 
 struct AppData {
-  vo::common::TimeSeparatedFrames time_separated_frames_;
+  cvp::vision::TimeSeparatedFrames time_separated_frames_;
   bool app_is_alive_{true};
 };
 static AppData app_data;
 
 void UpdateDataFromTimelapseCamera() {
-  using namespace vo::common;
+  using namespace cvp::vision;
   const auto number_of_frames_to_skip_between_matched_frames = 5;
   TimelapseCamera timelapse_camera(
       number_of_frames_to_skip_between_matched_frames);
@@ -21,7 +21,7 @@ void UpdateDataFromTimelapseCamera() {
 }
 
 void ShowMatchesBetweenTimeSeparatedFrames() {
-  using namespace vo::common;
+  using namespace cvp::vision;
   cv::Mat image_left = app_data.time_separated_frames_.current_frame_;
   cv::Mat image_right = app_data.time_separated_frames_.delayed_frame_;
 

@@ -1,8 +1,8 @@
 #pragma once
 #include <iCamera.h>
 
-namespace vo {
-namespace common {
+namespace cvp {
+namespace vision {
 
 constexpr int kVideoCaptureCamera = 0; // built-in webcam
 
@@ -15,5 +15,5 @@ private:
   cv::VideoCapture webcam_;
 };
 
-} // namespace common
-} // namespace vo
+} // namespace vision
+} // namespace cvp

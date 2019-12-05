@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 void viewCamera() {
-  vo::common::Camera testcam;
+  cvp::vision::Camera testcam;
   while (true) {
     const auto new_frame = testcam.Capture();
     if (new_frame.empty()) {

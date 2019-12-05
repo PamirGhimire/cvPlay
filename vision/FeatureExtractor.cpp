@@ -1,7 +1,7 @@
 #include <FeatureExtractor.h>
 
-namespace vo {
-namespace common {
+namespace cvp {
+namespace vision {
 namespace visual_features {
 
 FeatureExtractor::FeatureExtractor() {
@@ -72,5 +72,5 @@ FeatureExtractor::GetFeaturesFromImage(const cv::Mat &input_image,
 }
 
 } // namespace visual_features
-} // namespace common
-} // namespace vo
+} // namespace vision
+} // namespace cvp

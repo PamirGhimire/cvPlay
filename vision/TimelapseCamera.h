@@ -3,8 +3,8 @@
 #include <array>
 #include <deque>
 
-namespace vo {
-namespace common {
+namespace cvp {
+namespace vision {
 
 using uint = unsigned int;
 
@@ -41,5 +41,5 @@ private:
   std::deque<cv::Mat> frames_buffer_{};
 };
 
-} // namespace common
-} // namespace vo
+} // namespace vision
+} // namespace cvp

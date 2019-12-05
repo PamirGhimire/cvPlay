@@ -1,7 +1,7 @@
 #pragma once
 
-namespace common {
-namespace camera {
+namespace cvp {
+namespace vision {
 
 constexpr float kFocalLength = 1000;
 
@@ -13,5 +13,5 @@ struct CameraIntrinsics {
   float optical_center_y_{0};
 };
 
-} // namespace camera
-} // namespace common
+} // namespace cvp
+} // namespace vision

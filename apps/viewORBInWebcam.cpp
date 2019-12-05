@@ -2,8 +2,8 @@
 #include "FeatureExtractor.h"
 
 void DrawFastCornersOnWebcamStream() {
-  vo::common::Camera testcam;
-  vo::common::visual_features::FeatureExtractor feature_extractor;
+  cvp::vision::Camera testcam;
+  cvp::vision::visual_features::FeatureExtractor feature_extractor;
 
   while (true) {
     const cv::Mat new_frame = testcam.Capture();
