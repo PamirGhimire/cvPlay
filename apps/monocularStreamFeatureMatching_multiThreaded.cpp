@@ -53,12 +53,6 @@ void ShowMatchesBetweenTimeSeparatedFrames() {
     const auto feature_matches_left_right =
         GetVectorSpecifyingKMatchesToKOfSize(keypoints_in_left_image.size());
 
-    std::cout << "size of feature_matches_left_right = " << feature_matches_left_right.size()
-    << std::endl;
-    std::cout << "size of keypoints_in_left_image = " << keypoints_in_left_image.size()
-    << std::endl;
-
-
     cv::drawMatches(image_left, keypoints_in_left_image, image_right,
                     keypoints_in_right_image, feature_matches_left_right,
                     image_showing_matches);
@@ -79,14 +73,7 @@ bool UserPressedEscapeKey() {
 }
 
 void DrawFeatureMatchesOnMonocularStream() {
-  using namespace cvp::vision;
-  const auto number_of_frames_to_skip_between_matched_frames = 5;
-  TimelapseCamera timelapse_camera(number_of_frames_to_skip_between_matched_frames);
-
   while (true) {
-    timelapse_camera.Update();
-    app_data.time_separated_frames_ = timelapse_camera.GetTimeSeparatedFrames();
-
     if (app_data.time_separated_frames_.IsValid())
       ShowMatchesBetweenTimeSeparatedFrames();
 
@@ -98,9 +85,9 @@ void DrawFeatureMatchesOnMonocularStream() {
 }
 
 int main(int argc, char *argv[]) {
-  //std::thread camera_thread(UpdateDataFromTimelapseCamera);
+  std::thread camera_thread(UpdateDataFromTimelapseCamera);
   DrawFeatureMatchesOnMonocularStream();
 
-  // camera_thread.join();
+  camera_thread.join();
   return EXIT_SUCCESS;
 }
