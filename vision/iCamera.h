@@ -9,7 +9,7 @@ class iCamera {
 public:
   iCamera() = default;
   virtual cv::Mat Capture() = 0;
-  //todo :  virtual void Calibrate() = 0;
+  // todo :  virtual void Calibrate() = 0;
 };
 
 } // namespace vision

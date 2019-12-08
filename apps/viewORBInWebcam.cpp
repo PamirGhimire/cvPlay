@@ -11,8 +11,10 @@ void DrawFastCornersOnWebcamStream() {
       break;
     }
 
-    const auto orb_keypoints =
-        feature_extractor.GetORBKeypointsInImage(new_frame);
+    const auto orb_keypoints_and_features =
+        feature_extractor.GetORBKeypointsAndDescriptorsFromImage(new_frame);
+    const auto orb_keypoints = orb_keypoints_and_features.keypoints_;
+
     cv::drawKeypoints(new_frame, orb_keypoints, new_frame);
 
     const auto window_name{"ORB corners"};
