@@ -11,7 +11,7 @@ FeatureExtractor::FeatureExtractor() {
 
 KeypointsAndDescriptors
 FeatureExtractor::GetORBKeypointsAndDescriptorsFromImage(
-    const cv::Mat &input_image) {
+    const cv::Mat &input_image) const {
   std::vector<cv::KeyPoint> input_image_orb_keypoints;
   cv::Mat input_image_orb_descriptors;
   orb_feature_detector_descriptor_->detectAndCompute(
@@ -23,7 +23,7 @@ FeatureExtractor::GetORBKeypointsAndDescriptorsFromImage(
 
 KeypointsAndDescriptors
 FeatureExtractor::GetFASTKeypointsAndDescriptorsFromImage(
-    const cv::Mat &input_image) {
+    const cv::Mat &input_image) const {
   std::vector<cv::KeyPoint> input_image_fast_keypoints;
   cv::Mat input_image_fast_descriptors;
   fast_feature_detector_descriptor_->detectAndCompute(

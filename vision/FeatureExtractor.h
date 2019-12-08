@@ -19,9 +19,9 @@ public:
   FeatureExtractor();
 
   KeypointsAndDescriptors
-  GetORBKeypointsAndDescriptorsFromImage(const cv::Mat &input_image);
+  GetORBKeypointsAndDescriptorsFromImage(const cv::Mat &input_image) const;
   KeypointsAndDescriptors
-  GetFASTKeypointsAndDescriptorsFromImage(const cv::Mat &input_image);
+  GetFASTKeypointsAndDescriptorsFromImage(const cv::Mat &input_image) const;
 
 private:
   cv::Ptr<cv::ORB> orb_feature_detector_descriptor_;

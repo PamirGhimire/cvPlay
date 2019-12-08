@@ -1,6 +1,15 @@
 #include "FeatureMatcher.h"
 #include "TimelapseCamera.h"
 
+std::vector<cv::DMatch> GetVectorSpecifyingKMatchesToKOfSize(size_t n_matches) {
+  std::vector<cv::DMatch> specify_k_in_a_matches_to_k_in_b;
+  specify_k_in_a_matches_to_k_in_b.reserve(n_matches);
+  for (size_t i = 0; i < n_matches; ++i) {
+    specify_k_in_a_matches_to_k_in_b.emplace_back(i, i, 0);
+  }
+  return specify_k_in_a_matches_to_k_in_b;
+}
+
 void ShowMatchesBetweenTimeSeparatedFrames(
     const cvp::vision::TimeSeparatedFrames &time_separated_frames) {
   using namespace cvp::vision;
@@ -11,16 +20,16 @@ void ShowMatchesBetweenTimeSeparatedFrames(
   const auto feature_correspondences_left_right =
       feature_matcher.FindCorrespondencesBetweenTwoImages(image_left,
                                                           image_right);
-  const auto feature_matches_left_right =
-      feature_correspondences_left_right.matches_in_dest_right_for_left_;
 
   cv::Mat image_showing_matches;
 
-  if (!feature_matches_left_right.empty()) {
+  if (feature_correspondences_left_right.IsValid()) {
     const auto keypoints_in_left_image =
         feature_correspondences_left_right.keypoints_left_image_;
     const auto keypoints_in_right_image =
         feature_correspondences_left_right.keypoints_right_image_;
+    const auto feature_matches_left_right =
+        GetVectorSpecifyingKMatchesToKOfSize(keypoints_in_left_image.size());
 
     cv::drawMatches(image_left, keypoints_in_left_image, image_right,
                     keypoints_in_right_image, feature_matches_left_right,
