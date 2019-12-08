@@ -8,26 +8,37 @@ void ShowMatchesBetweenTimeSeparatedFrames(
   cv::Mat image_right = time_separated_frames.delayed_frame_;
 
   visual_features::FeatureMatcher feature_matcher;
+  const auto feature_correspondences_left_right =
+      feature_matcher.FindCorrespondencesBetweenTwoImages(image_left,
+                                                          image_right);
   const auto feature_matches_left_right =
-      feature_matcher.MatchKeypointsInImages(image_left, image_right);
+      feature_correspondences_left_right.matches_in_dest_right_for_left_;
 
   cv::Mat image_showing_matches;
 
   if (!feature_matches_left_right.empty()) {
-    visual_features::FeatureExtractor feature_extractor;
-    const auto orb_keypoints_image_left =
-        feature_extractor.GetORBKeypointsInImage(image_left);
-    const auto orb_keypoints_image_right =
-        feature_extractor.GetORBKeypointsInImage(image_right);
+    const auto keypoints_in_left_image =
+        feature_correspondences_left_right.keypoints_left_image_;
+    const auto keypoints_in_right_image =
+        feature_correspondences_left_right.keypoints_right_image_;
 
-    cv::drawMatches(image_left, orb_keypoints_image_left, image_right,
-                    orb_keypoints_image_right, feature_matches_left_right,
+    cv::drawMatches(image_left, keypoints_in_left_image, image_right,
+                    keypoints_in_right_image, feature_matches_left_right,
                     image_showing_matches);
   }
 
   const auto window_name{"feature matching between time-separated frames"};
   if (!image_showing_matches.empty())
     cv::imshow(window_name, image_showing_matches);
+}
+
+bool UserPressedEscapeKey() {
+  const auto escape_key = 27;
+  const auto key_press = cv::waitKey(10);
+  if (key_press == escape_key) {
+    return true;
+  }
+  return false;
 }
 
 void DrawFeatureMatchesOnMonocularStream() {
@@ -44,9 +55,7 @@ void DrawFeatureMatchesOnMonocularStream() {
     if (time_separated_frames.IsValid())
       ShowMatchesBetweenTimeSeparatedFrames(time_separated_frames);
 
-    const auto escape_key = 27;
-    const auto key_press = cv::waitKey(10);
-    if (key_press == escape_key) {
+    if (UserPressedEscapeKey()) {
       break;
     }
   }

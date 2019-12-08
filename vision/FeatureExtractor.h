@@ -6,25 +6,26 @@ namespace vision {
 namespace visual_features {
 
 enum class VisualFeatures { FAST, ORB };
+struct KeypointsAndDescriptors {
+  KeypointsAndDescriptors(const std::vector<cv::KeyPoint> &keypoints,
+                          const cv::Mat &descriptors)
+      : keypoints_(keypoints), descriptors_(descriptors) {}
+  std::vector<cv::KeyPoint> keypoints_;
+  cv::Mat descriptors_;
+};
 
 class FeatureExtractor {
 public:
   FeatureExtractor();
 
-  std::vector<cv::KeyPoint>
-  GetKeypointsInImage(const cv::Mat &input_image,
-                      const VisualFeatures feature_type);
-  cv::Mat GetFeaturesFromImage(const cv::Mat &input_image,
-                               const VisualFeatures feature_type);
-
-  std::vector<cv::KeyPoint> GetORBKeypointsInImage(const cv::Mat &input_image);
-  std::vector<cv::KeyPoint> GetFASTKeypointsInImage(const cv::Mat &input_image);
-  cv::Mat GetORBFeaturesFromImage(const cv::Mat &input_image);
-  cv::Mat GetFASTFeaturesFromImage(const cv::Mat &input_image);
+  KeypointsAndDescriptors
+  GetORBKeypointsAndDescriptorsFromImage(const cv::Mat &input_image);
+  KeypointsAndDescriptors
+  GetFASTKeypointsAndDescriptorsFromImage(const cv::Mat &input_image);
 
 private:
-  cv::Ptr<cv::ORB> orb_feature_;
-  cv::Ptr<cv::FastFeatureDetector> fast_feature_;
+  cv::Ptr<cv::ORB> orb_feature_detector_descriptor_;
+  cv::Ptr<cv::FastFeatureDetector> fast_feature_detector_descriptor_;
 };
 
 } // namespace visual_features

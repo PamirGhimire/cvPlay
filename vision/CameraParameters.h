@@ -13,5 +13,5 @@ struct CameraIntrinsics {
   float optical_center_y_{0};
 };
 
-} // namespace cvp
 } // namespace vision
+} // namespace cvp
