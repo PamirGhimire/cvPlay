@@ -8,7 +8,7 @@ namespace visual_features {
 
 struct CorrespondingKeypointsInImagePair {
   CorrespondingKeypointsInImagePair(std::vector<cv::KeyPoint> keypoints_left,
-                                  std::vector<cv::KeyPoint> keypoints_right)
+                                    std::vector<cv::KeyPoint> keypoints_right)
       : keypoints_left_image_(keypoints_left),
         keypoints_right_image_(keypoints_right) {
     if (keypoints_left.size() != keypoints_right.size())
