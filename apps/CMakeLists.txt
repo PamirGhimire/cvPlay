@@ -10,3 +10,4 @@ add_subdirectory(monocularStreamFeatureMatching)
 add_subdirectory(monocularStreamFeatureMatching_multiThreaded)
 add_subdirectory(monoStreamFundamentalMatEstimation)
 #add_subdirectory(monoStreamFundamentalMatEstimation_multiThreaded) #needs fixing
+add_subdirectory(monoStreamRigidTransformationEstimation)
